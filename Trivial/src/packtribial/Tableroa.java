@@ -37,5 +37,11 @@ public class Tableroa {
 	public static void main(String args[]){
 		Tableroa.getNireTableroa().partidaBatJolastu();
 	}
+
+	public boolean fitxaMugitu(Jokalaria jokalaria, int pasilloa, int posizioaErrenkada, int posizioaZutabea,
+			ListaGaztatxoak puntuak, int ateratakoa) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

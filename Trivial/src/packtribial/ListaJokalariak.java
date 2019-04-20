@@ -38,14 +38,14 @@ public class ListaJokalariak {
 			garailea=lista[kont].txandaBurutu(); //boolean o int no se sabe aún
 			//TODO
 		}
-		this.partidaBukatu(lista[kont].getIrabazlearenNick, lista[kont].getFitxarenKolorea);
+		this.partidaBukatu(lista[kont].getFitxarenKolorea());//nick-a ipini diateke
 	}
 
 	public void setJokalariKop(int pKop){
 		this.jokalariKop=pKop;//TODO
 	}
 	
-	public void partidaBukatu(String pIrabazlearenNick, String pFitxarenKolorea) {
-		System.out.println("Zorionak " + pIrabazlearenNick + "!!! Zure fitxak, " + pFitxarenKolorea + " kolorekoa, partida irabazi egin du!!!");
+	public void partidaBukatu(String pFitxarenKolorea) {
+		System.out.println("Zorionak " + pFitxarenKolorea + " partida irabazi egin du!!!");
 	}
 }
