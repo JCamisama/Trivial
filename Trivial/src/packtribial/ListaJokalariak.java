@@ -28,7 +28,17 @@ public class ListaJokalariak {
 	}
 	
 	public void jokalarienTxandaKudeatu(int pJokalariKop) {
-		//TODO
+		int kont=-1;
+		boolean garailea=false;
+		while(!garailea){ //txanda kopuru limitatua ipini denbora badago
+			kont++;
+			if (kont>this.jokalariKop){
+				kont=0;
+			}
+			garailea=lista[kont].txandaBurutu(); //boolean o int no se sabe aún
+			//TODO
+		}
+		this.partidaBukatu(lista[kont].getIrabazlearenNick, lista[kont].getFitxarenKolorea);
 	}
 
 	public void setJokalariKop(int pKop){
