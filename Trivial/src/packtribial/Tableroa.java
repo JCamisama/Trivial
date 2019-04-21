@@ -14,6 +14,8 @@ public class Tableroa {
 	//eraikitazilea
 	private Tableroa() {
 		//this.laukienZerrenda = new ArrayList<Laukia>();
+		
+		
 	}
 
 	//gainotzeko metodoak
@@ -23,28 +25,32 @@ public class Tableroa {
 		}
 		return Tableroa.nireTableroa;
 	}
-	private void partidaBatJolastu() {
-		//TODO
-	}
-	
+
 
 	
-	private void partidaHasieratu() {
-		//TODO adibidez ezarri jokalari kop, hasieratu zerrenda guztiak etab
-	}
-	
-	public void partidaBukatu(String pIrabazlearenNick, String pFitxarenKolorea) {
-		System.out.println("Zorionak " + pIrabazlearenNick + "!!! Zure fitxak, " + pFitxarenKolorea + " kolorekoa, partida irabazi egin du!!!");
-	}
-	
-	public static void main(String args[]){
-		Tableroa.getNireTableroa().partidaBatJolastu();
-	}
-
 	public boolean fitxaMugitu(int pTxanda, boolean pHasierakoPasilloan, int posizioaErrenkada, int posizioaZutabea,
 			ListaGaztatxoak puntuak, int ateratakoa) {
 		
-		boolean garaileaDa	= false;
+		boolean garaileaDa		= false;
+		int		egungoPosizioa	= posizioaZutabea;
+		int		kont			= 0;
+		
+		if(pHasierakoPasilloan){
+			
+			
+		}
+		
+		else{
+			
+		
+			while(kont <= ateratakoa){
+			
+			kont++;
+			if( this.instanceof)
+		}
+		
+		
+		
 		// TODO Auto-generated method stub
 		
 		return garaileaDa;

@@ -11,8 +11,7 @@ public class Jokalaria {
 	private int				posizioaZutabea;
 	private boolean 		hasierakoPasilloan; //True 6-etako pasilloren batean badago
 	//private boolean			garailea;
-	
-	
+		
 	//Eraikitzailea
 	
 	public Jokalaria(String pKolorea, int pPosizioaErrenkada, int pPosizioaZutabea, boolean pHasierakoPasilloa){
