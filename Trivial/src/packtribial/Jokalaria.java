@@ -9,23 +9,23 @@ public class Jokalaria {
 	private ListaGaztatxoak	puntuak;
 	private int				posizioaErrenkada;
 	private int				posizioaZutabea;
-	private int 			pasilloa;
+	private boolean 		hasierakoPasilloan; //True 6-etako pasilloren batean badago
 	//private boolean			garailea;
 	
 	
 	//Eraikitzailea
 	
-	public Jokalaria(String pKolorea, int pPosizioaErrenkada, int pPosizioaZutabea, int pPasilloa){
+	public Jokalaria(String pKolorea, int pPosizioaErrenkada, int pPosizioaZutabea, boolean pHasierakoPasilloa){
 		this.kolorea=pKolorea;
 		this.puntuak=new ListaGaztatxoak();
 		this.posizioaErrenkada=pPosizioaErrenkada;
 		this.posizioaZutabea=pPosizioaZutabea;
-		this.pasilloa=pPasilloa;
+		this.hasierakoPasilloan=pHasierakoPasilloa;
 		
 	}
 	
 	
-	public boolean txandaBurutu(){
+	public boolean txandaBurutu(int pTxanda){
 
         boolean garaileaDa = false;
         Tableroa tableroHau = Tableroa.getNireTableroa();
@@ -34,9 +34,15 @@ public class Jokalaria {
         int ateratakoa = dadoHau.getGoikoAldea();
 
         //Tableroa klasean fitxa mugitzeko
-        garaileaDa=tableroHau.fitxaMugitu(this, this.pasilloa, this.posizioaErrenkada, this.posizioaZutabea
-        		, this.puntuak, ateratakoa);
+        
+        /*garaileaDa=tableroHau.fitxaMugitu(this, this.pasilloa, this.posizioaErrenkada, this.posizioaZutabea
+        		, this.puntuak, ateratakoa);*/
                 //ateratakoa, this.pasilloa, this.posizioaErrenkada, this.posizioaZutabea, );
+        garaileaDa=tableroHau.fitxaMugitu(pTxanda, this.hasierakoPasilloan, this.posizioaErrenkada, this.posizioaZutabea, 
+        								  this.puntuak, ateratakoa);
+        
+        
+        
         return garaileaDa;
 	    }
 	
@@ -52,8 +58,8 @@ public class Jokalaria {
 	public void setPosizioaZutabea(int pPosizioaZutabea){
 		this.posizioaZutabea=pPosizioaZutabea;
 	}
-	public void setPasilloa(int pPasilloa){
-		this.pasilloa=pPasilloa;
+	public void setPasilloa(boolean pHasierakoPasilloa){
+		this.hasierakoPasilloan=pHasierakoPasilloa;
 	}
 }
 

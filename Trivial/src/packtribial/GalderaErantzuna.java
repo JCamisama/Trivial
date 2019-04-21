@@ -1,4 +1,4 @@
-package proiektua;
+package packtribial;
 
 public class GalderaErantzuna {
 	//atributuak-atributos

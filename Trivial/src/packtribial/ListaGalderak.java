@@ -1,5 +1,5 @@
 
-package proiektua;
+package packtribial;
 
 import java.io.BufferedReader;
 import java.io.File;

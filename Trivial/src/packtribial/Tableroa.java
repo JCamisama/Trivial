@@ -1,16 +1,19 @@
-package proiektua;
+package packtribial;
 
 import java.util.*;
 
 public class Tableroa {
 	//atributuak
-	private Kasilla[][] lehenengoBidea;
-	private Kasilla[] bigarrenBidea;
+	private Laukia[][]	lehenengoBidea;// Barneko 6 bideetan
+	private int			errendakadaKop;
+	private int			zutabeKop;
+	private Laukia[]	bigarrenBidea;// Kanpoko bidea, zirkulu bat
+	private	int			posizioZirkuluan; 		
 	private static Tableroa nireTableroa;
 
 	//eraikitazilea
 	private Tableroa() {
-		this.laukienZerrenda = new ArrayList<Laukia>();
+		//this.laukienZerrenda = new ArrayList<Laukia>();
 	}
 
 	//gainotzeko metodoak
@@ -38,10 +41,13 @@ public class Tableroa {
 		Tableroa.getNireTableroa().partidaBatJolastu();
 	}
 
-	public boolean fitxaMugitu(Jokalaria jokalaria, int pasilloa, int posizioaErrenkada, int posizioaZutabea,
+	public boolean fitxaMugitu(int pTxanda, boolean pHasierakoPasilloan, int posizioaErrenkada, int posizioaZutabea,
 			ListaGaztatxoak puntuak, int ateratakoa) {
+		
+		boolean garaileaDa	= false;
 		// TODO Auto-generated method stub
 		
+		return garaileaDa;
 	}
 	
 }
