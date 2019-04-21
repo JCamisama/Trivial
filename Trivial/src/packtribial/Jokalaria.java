@@ -26,7 +26,8 @@ public class Jokalaria {
 	
 	public boolean txandaBurutu(int pTxanda){
 
-        boolean garaileaDa = false;
+		boolean garaileaDa=false;
+        JokalariaAldaketak aldaketak = null;
         Tableroa tableroHau = Tableroa.getNireTableroa();
         Dadoa dadoHau = Dadoa.getNireDadoa();
         dadoHau.bota();
@@ -37,9 +38,14 @@ public class Jokalaria {
         /*garaileaDa=tableroHau.fitxaMugitu(this, this.pasilloa, this.posizioaErrenkada, this.posizioaZutabea
         		, this.puntuak, ateratakoa);*/
                 //ateratakoa, this.pasilloa, this.posizioaErrenkada, this.posizioaZutabea, );
-        garaileaDa=tableroHau.fitxaMugitu(pTxanda, this.hasierakoPasilloan, this.posizioaErrenkada, this.posizioaZutabea, 
+        aldaketak=tableroHau.fitxaMugitu(this.hasierakoPasilloan, this.posizioaErrenkada, this.posizioaZutabea, 
         								  this.puntuak, ateratakoa);
         
+        garaileaDa=aldaketak.getPartidaAmaituDa();
+        this.setPasilloa(aldaketak.getHasierakoPasilloa());
+        this.setPosizioaErrenkada(aldaketak.getPosizioaErrenkada());
+        this.setPosizioaZutabea(aldaketak.getPosizioaZutabea());
+        this.gehituGaztatxoa(aldaketak.getGaztatxoa());
         
         
         return garaileaDa;
@@ -48,8 +54,8 @@ public class Jokalaria {
 	public String getFitxarenKolorea(){
 		return this.kolorea;
 	}
-	public void setListaGaztatxoak(ListaGaztatxoak pPuntuak){
-		this.puntuak=pPuntuak;
+	public void gehituGaztatxoa(String pGaztatxoa){
+		this.puntuak.gehituGaztatxoa(pGaztatxoa);
 	}
 	public void setPosizioaErrenkada(int pPosizioaErrenkada){
 		this.posizioaErrenkada=pPosizioaErrenkada;
