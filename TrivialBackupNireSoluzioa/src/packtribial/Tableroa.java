@@ -35,31 +35,29 @@ public class Tableroa {
 		
 		//Jokalariaren informazioa eguneratzeko aldagai lokalak
 		
-		Teklatua	teklatuHau			= Teklatua.getTeklatua();
 		boolean garaileaDa				= false;
 		boolean hasierakoPasilloan		= pHasierakoPasilloan;
 		int		egungoZutabea			= pPosizioaZutabea;
 		int		egungoErrenkada			= pPosizioaErrenkada;
-		String erantzuna				= "okerra";					//jokalariaren puntuak kontrolatzeko
+		String  erantzuna				= "okerra";					//jokalariaren puntuak kontrolatzeko
 		int		kont					= 0;
 		
 		
 		if(!hasierakoPasilloan){
-				
-			String noraMugitu = teklatuHau.noraMugitu("Nora mugitu nahi duzu fitxa? (aurrera/atzera)");
-			//Salbuespena gertatuko da kasu honetan****************************
-				
-			egungoZutabea	= this.mugituZirkuluan(egungoZutabea, pAteratakoa, noraMugitu);
+			
+			egungoZutabea	= this.mugituZirkuluan(egungoZutabea, pAteratakoa);
 			erantzuna		= this.bigarrenBidea[egungoZutabea].galderaFormulatu();
 				 
-
 			//jokalariaren puntuak eguneratzen
 			pPuntuak.gehituGaztatxoa(erantzuna);
 				 
 			if (pPuntuak.zenbatGaztatxo() == 6){
 					 
 				hasierakoPasilloan	= true;
-				/* hemen laukitxo bereziaren koordenatuak ipini: errenkada zenbakia eta zutabe azkenengo posizioa */
+				
+				//downcasting-a erabiliz
+				egungoErrenkada		= ((LaukiGaztaduna)this.bigarrenBidea[egungoZutabea]).getErrenkada();
+				egungoZutabea		= ((LaukiGaztaduna)this.bigarrenBidea[egungoZutabea]).getZutabeaPasilloan();
 			}
 			
 		}
@@ -70,48 +68,90 @@ public class Tableroa {
 				//pasilloaren barnean dago eta jadanik sartu da
 				
 				
-				egungoZutabea = mugituAzkenengoGalderarantz(egungoZutabea);
+				egungoZutabea	= egungoZutabea - pAteratakoa;
+				
+				if (egungoZutabea < 0){
+					
+					egungoZutabea = 0;
+				}
+				erantzuna		= this.bigarrenBidea[egungoZutabea].galderaFormulatu();
+				
+				//Zerogarren laukira heltzeko behar baino gehiago ateratzen bada dadoan, onartuko dugu
+				if(egungoZutabea == 0 && erantzuna == "zuzena"){
+					
+					garaileaDa	= true;
+				}
+				
+				else{
+					
+					pPuntuak.gehituGaztatxoa(erantzuna);//galdera erantzun ostean zer gertatu den esaten du
+					
+				}
+					
+			}
+			
+			
+			else{
+				
+				while (kont <= pAteratakoa && hasierakoPasilloan){
+				
+					kont++;
+					egungoZutabea++;
+					if( this.lehenengoBidea[egungoErrenkada][egungoZutabea] instanceof LaukiGaztaduna){
+					
+						hasierakoPasilloan	= false;
+						//downcasting-a erabiliz
+						egungoZutabea		= 
+								((LaukiGaztaduna)this.lehenengoBidea[egungoErrenkada][egungoZutabea]).getZutabeaZirkuluan();
+					}
+				}
+				
+				if (kont < pAteratakoa){ //zirkulura pasatu da eta oraindik mugitu behar da
+					
+					int zenbatMugitu	= pAteratakoa - kont;
+					egungoZutabea		= this.mugituZirkuluan(egungoZutabea,zenbatMugitu);
+					
+				}
+				
+				//Mugimengua guztiz burutu dela, galdera eskatzeko momentua da
+				
+				if(!hasierakoPasilloan){
+					
+					erantzuna		= this.bigarrenBidea[egungoZutabea].galderaFormulatu();
+	
+				}
+				
+				else{
+					
+					erantzuna		= this.lehenengoBidea[egungoErrenkada][egungoZutabea].galderaFormulatu();
+				}
 				
 				
-				
+				//jokalariaren puntuak eguneratzen
+				pPuntuak.gehituGaztatxoa(erantzuna);
 				
 			}
 			
 		}
 				 
 				
-			/*	
-				
-				if( this.lehenengoBidea[egungoErrenkada][egungoZutabea] instanceof LaukiGaztaduna){
-				
-				
-					
-				}
-			
-				
-			
-			else{
-				
-				
-					if( this.bigarrenBidea[egungoZutabea] instanceof LaukiGaztaduna){
-						
-					}
-				}
-	
-		*/
-		
-		/*public JokalariaAldaketak(boolean pHasierakoPasilloan, int pPosizioaErrenkada, int pPosizioaZutabea, String pGaztatxoa,
-				boolean pPartidaAmaituDa){*/
 		JokalariaAldaketak aldaketak = null;
+		aldaketak	= new JokalariaAldaketak(hasierakoPasilloan, egungoErrenkada, egungoZutabea, erantzuna, garaileaDa);
+																							//erantzuna ez da beharrezkoa itzuleran
 		return aldaketak;
-		}
+	}
 		
 	
-	private int mugituZirkuluan(int pEgungoPosizioa, int pZenbatMugitu, String pNora){
+	private int mugituZirkuluan(int pEgungoPosizioa, int pZenbatMugitu){
+		
+		//*****************************************************************************************
+		Teklatua	teklatuHau	= Teklatua.getTeklatua();
+		String noraMugitu 		= teklatuHau.noraMugitu("Nora mugitu nahi duzu fitxa? (aurrera/atzera)");
+		//Salbuespena gertatuko da kasu honetan****************************************************
 		
 		int	posizioBerria	= pEgungoPosizioa;
 		
-		if (pNora == "aurrera"){
+		if (noraMugitu == "aurrera"){
 			
 			posizioBerria	= posizioBerria + pZenbatMugitu;
 			if (posizioBerria > 41){
@@ -120,7 +160,7 @@ public class Tableroa {
 			}
 		}
 			
-		else if (pNora == "atzera"){
+		else if (noraMugitu == "atzera"){
 				
 			posizioBerria	= posizioBerria - pZenbatMugitu;
 			if(posizioBerria < 0){
@@ -133,12 +173,7 @@ public class Tableroa {
 		return posizioBerria;
 	}
 	
-	private int mugituAzkenengoGalderarantz(int pEgungoPosizioa){
-		
-		int posizioBerria;
-		
-	}
-	
+
 	
 	
 	
