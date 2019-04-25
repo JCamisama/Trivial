@@ -136,7 +136,8 @@ public class Tableroa {
 				 
 				
 		JokalariaAldaketak aldaketak = null;
-		aldaketak	= new JokalariaAldaketak(hasierakoPasilloan, egungoErrenkada, egungoZutabea, erantzuna, garaileaDa);
+		boolean	txandarenEmaitza = (erantzuna != "okerra");
+		aldaketak	= new JokalariaAldaketak(hasierakoPasilloan, egungoErrenkada, egungoZutabea, txandarenEmaitza, garaileaDa);
 																							//erantzuna ez da beharrezkoa itzuleran
 		return aldaketak;
 	}
