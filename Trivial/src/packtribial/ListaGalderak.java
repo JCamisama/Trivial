@@ -51,4 +51,14 @@ public class ListaGalderak {
 		int eranEgokia = Integer.parseInt(zenbakia);
 		//BLA BLA BLA
 	}
+	
+	
+	public String galderaFormulatu(String pKolorea){
+		
+		String erantzuna = "zerbait";
+		
+		return erantzuna;
+		
+		
+	}
 }

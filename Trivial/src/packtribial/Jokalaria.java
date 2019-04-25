@@ -27,25 +27,37 @@ public class Jokalaria {
 	public boolean txandaBurutu(int pTxanda){
 
 		boolean garaileaDa=false;
+		boolean txandarenEmaitza=false;					//Konprobatzeko ea jokalariak ondo edo txarto erantzun duen, txanda errepikatzeko
+		int kont = 0;									//Jokalariaren zein txanda pasatu den jakiteko
         JokalariaAldaketak aldaketak = null;
         Tableroa tableroHau = Tableroa.getNireTableroa();
         Dadoa dadoHau = Dadoa.getNireDadoa();
-        dadoHau.bota();
-        int ateratakoa = dadoHau.getGoikoAldea();
-
-        //Tableroa klasean fitxa mugitzeko
         
-        /*garaileaDa=tableroHau.fitxaMugitu(this, this.pasilloa, this.posizioaErrenkada, this.posizioaZutabea
-        		, this.puntuak, ateratakoa);*/
-                //ateratakoa, this.pasilloa, this.posizioaErrenkada, this.posizioaZutabea, );
-        aldaketak=tableroHau.fitxaMugitu(this.hasierakoPasilloan, this.posizioaErrenkada, this.posizioaZutabea, 
-        								  this.puntuak, ateratakoa);
+        do{
+	        dadoHau.bota();
+	        int ateratakoa = dadoHau.getGoikoAldea();
+	
+	        //Tableroa klasean fitxa mugitzeko
+	        
+	        /*garaileaDa=tableroHau.fitxaMugitu(this, this.pasilloa, this.posizioaErrenkada, this.posizioaZutabea
+	        		, this.puntuak, ateratakoa);*/
+	                //ateratakoa, this.pasilloa, this.posizioaErrenkada, this.posizioaZutabea, );
+	        aldaketak=tableroHau.fitxaMugitu(this.hasierakoPasilloan, this.posizioaErrenkada, this.posizioaZutabea, 
+	        								  this.puntuak, ateratakoa);
+	        
+	        garaileaDa=aldaketak.getPartidaAmaituDa();
+	        this.setPasilloa(aldaketak.getHasierakoPasilloa());
+	        this.setPosizioaErrenkada(aldaketak.getPosizioaErrenkada());
+	        this.setPosizioaZutabea(aldaketak.getPosizioaZutabea());
+	        txandarenEmaitza = aldaketak.getTxandarenEmaitza();
         
-        garaileaDa=aldaketak.getPartidaAmaituDa();
-        this.setPasilloa(aldaketak.getHasierakoPasilloa());
-        this.setPosizioaErrenkada(aldaketak.getPosizioaErrenkada());
-        this.setPosizioaZutabea(aldaketak.getPosizioaZutabea());
-        this.gehituGaztatxoa(aldaketak.getGaztatxoa());
+	        kont++;
+	        System.out.println("Jokalari "+this.kolorea+" "+kont+". txandan dago.");
+        
+        }while(txandarenEmaitza);
+        
+        
+        
         
         
         return garaileaDa;

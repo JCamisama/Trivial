@@ -8,7 +8,7 @@ public class Laukia {
 
 	//eraikitzailea-constructora
 	
-	public Laukia(String pKolorea, posizio){
+	public Laukia(String pKolorea){
 		
 		this.kolorea = pKolorea;
 		
@@ -18,13 +18,19 @@ public class Laukia {
 	
 	
 	public String galderaFormulatu(){
+		
+		String erantzuna = "okerra";
 	
-		String erantzuna ="zerbait";
+		ListaGalderak galderaHauek = ListaGalderak.getNireListaGalderak();
 		
-		
+		erantzuna	= galderaHauek.galderaFormulatu(this.kolorea);
+	
 		return erantzuna;
 		
 	}
 	
-	
+	protected String getKolorea(){
+		
+		return this.kolorea;
+	}
 }
