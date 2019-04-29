@@ -20,10 +20,16 @@ public class Laukia {
 	public String galderaFormulatu(){
 		
 		String erantzuna = "okerra";
+		boolean erantzunaBoolear = false;
 	
 		ListaGalderak galderaHauek = ListaGalderak.getNireListaGalderak();
 		
-		erantzuna	= galderaHauek.galderaFormulatu(this.kolorea);
+		erantzunaBoolear	= galderaHauek.galderaFormulatu(this.kolorea);
+		
+		if (erantzunaBoolear){
+			
+			erantzuna = "zuzena";
+		}
 	
 		return erantzuna;
 		

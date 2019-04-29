@@ -33,6 +33,7 @@ public class LaukiGaztaduna extends Laukia{
 	public String galderaFormulatu(){
 			
 			String erantzuna = super.galderaFormulatu();
+			
 		
 			if (erantzuna == "zuzena"){
 				

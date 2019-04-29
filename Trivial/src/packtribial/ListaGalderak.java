@@ -53,9 +53,9 @@ public class ListaGalderak {
 	}
 	
 	
-	public String galderaFormulatu(String pKolorea){
+	public boolean galderaFormulatu(String pKolorea){
 		
-		String erantzuna = "zerbait";
+		boolean erantzuna = false;
 		
 		return erantzuna;
 		
